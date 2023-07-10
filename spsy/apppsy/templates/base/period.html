@@ -1,0 +1,36 @@
+{% comment %} {% if selected_start_month and selected_end_month %}
+    <h2>Répartition des valeurs prédites pour la période {{ selected_start_month }} - {{ selected_end_month }} :</h2>
+    <ul>
+        {% for predicted, count in predicted_counts.items %}
+            <li>{{ predicted }}: {{ count }}</li>
+        {% endfor %}
+    </ul>
+{% endif %} {% endcomment %}
+
+
+<form method="GET" action="{% url 'period' %}">
+    <label for="start_month">Mois de début :</label>
+    <select name="start_month" id="start_month">
+        {% for month in months %}
+            <option value="{{ month }}" {% if month == selected_start_month %}selected{% endif %}>{{ month }}</option>
+        {% endfor %}
+    </select>
+
+    <label for="end_month">Mois de fin :</label>
+    <select name="end_month" id="end_month">
+        {% for month in months %}
+            <option value="{{ month }}" {% if month == selected_end_month %}selected{% endif %}>{{ month }}</option>
+        {% endfor %}
+    </select>
+
+    <button type="submit">Afficher</button>
+</form>
+
+{% if selected_start_month and selected_end_month %}
+    <h2>Répartition des valeurs prédites pour la période {{ selected_start_month }} - {{ selected_end_month }} :</h2>
+    <ul>
+        {% for predicted, count in predicted_counts.items %}
+            <li>{{ predicted }}: {{ count }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}

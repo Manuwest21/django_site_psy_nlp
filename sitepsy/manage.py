@@ -20,3 +20,10 @@ def main():
 
 if __name__ == '__main__':
     main()
+
+
+import os
+import sys
+
+# Ajoutez le chemin de recherche personnalisé pour les commandes
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), 'SITEPSY', 'management', 'commands')))

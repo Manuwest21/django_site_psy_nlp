@@ -83,15 +83,16 @@ WSGI_APPLICATION = 'sitepsy.wsgi.application'
 # }
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'myproject',
-
-        'USER': 'django',
-        'PASSWORD': 'django',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'psy_db',
+        'USER': 'postgres',
+        'PASSWORD': 'postgres',
         'HOST': 'localhost',
         'PORT': '5432',
     }
 }
+
+
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.sqlite3',

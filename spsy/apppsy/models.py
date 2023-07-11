@@ -15,7 +15,7 @@ from django.db import models
 from django.conf import settings
 from elasticsearch_dsl import Document, Text, Date, Boolean, Keyword, Float, connections
 
-# Configurer la connexion Elasticsearch
+# # Configurer la connexion Elasticsearch
 connections.create_connection(hosts=settings.ELASTICSEARCH_DSL['default']['hosts'])
 
 

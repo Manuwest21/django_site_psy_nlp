@@ -1,5 +1,13 @@
 version: '3'
 services:
+  elastic:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.17.10
+    environment:
+      - discovery.type=single-node
+    volumes:
+      - /home/apprenant/Documents/DEV_IA/NLP/NLP_Psy/Data:/usr/share/elasticsearch/data
+    ports:
+      - 9200:9200
   db:
     image: postgres
     restart: always
@@ -8,6 +16,7 @@ services:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
     volumes:
-      - ./pgdata:/var/lib/postgr  esql/data
+      - ./pgdata:/var/lib/postgresql/data
     ports:
-    - 5432:5432
+      - 5432:5432
+

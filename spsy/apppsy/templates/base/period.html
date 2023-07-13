@@ -22,6 +22,10 @@
             <option value="{{ month }}" {% if month == selected_end_month %}selected{% endif %}>{{ month }}</option>
         {% endfor %}
     </select>
+    
+    <!-- Nouveau champ de recherche par patient -->
+    <label for="patient">Patient :</label>
+    <input type="text" name="patient" id="patient" value="{{ request.GET.patient }}">
 
     <button type="submit">Afficher</button>
 </form>
@@ -34,3 +38,5 @@
         {% endfor %}
     </ul>
 {% endif %}
+
+

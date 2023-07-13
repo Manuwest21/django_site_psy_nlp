@@ -21,22 +21,24 @@ def period_view(request):
         current_date += timedelta(days=30)  # Ajoute 30 jours pour passer au mois suivant
     selected_start_month = request.GET.get('start_month')
     selected_end_month = request.GET.get('end_month')
-
-    # Conversion des mois sélectionnés en dates de début et de fin
     
-    start_date = selected_start_month
-    end_date = selected_end_month
-    # except ValueError:
-    #     return HttpResponseBadRequest("Format de date invalide.")
+    # Nouveau code : Récupération du nom du patient
+    search_patient = request.GET.get('patient')
+    
     try:
         start_date = datetime.strptime(selected_start_month, '%B %Y')
         end_date = datetime.strptime(selected_end_month, '%B %Y')
     except:
-        start_date=datetime(2020, 1, 1)
-        end_date=datetime(2023, 12, 31)
+        start_date = datetime(2020, 1, 1)
+        end_date = datetime(2023, 12, 31)
+    
     # Récupération des instances du modèle dans la plage de date sélectionnée
     instances = Le_patient_date.objects.filter(date__range=[start_date, end_date])
-
+    
+    # Nouveau code : Filtrage des instances par nom de patient
+    if search_patient:
+        instances = instances.filter(patient_lastname__icontains=search_patient)
+    
     # Calcul de la répartition des valeurs du champ "predicted"
     predicted_counts = {}
     for instance in instances:
@@ -45,7 +47,7 @@ def period_view(request):
             predicted_counts[predicted] += 1
         else:
             predicted_counts[predicted] = 1
-
+    
     context = {
         'months': months,
         'selected_start_month': selected_start_month,
@@ -53,8 +55,11 @@ def period_view(request):
         'predicted_counts': predicted_counts,
         # Autres données à passer au template
     }
-
+    
     return render(request, 'base/period.html', context)
+
+
+
 
 
 

@@ -47,6 +47,7 @@ Le projet utilise un modèle appelé Le_patient_date pour stocker les informatio
 
     Dans ce projet la DB utilisé est PostgreSQL. Vous trouverez un fichier docker-compose qui permet de déployer une DB en local. Vous trouverez également un fichier csv pour remplir la DB et tester les fonctionalités du site.
 
+
 Licence
 
     Ce projet est sous licence MIT.

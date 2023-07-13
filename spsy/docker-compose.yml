@@ -1,0 +1,50 @@
+# version: '3'
+# services:
+#   elastic:
+#     image: docker.elastic.co/elasticsearch/elasticsearch:7.17.10
+#     environment:
+#       - discovery.type=single-node
+#     volumes:
+#       - elasticsearch_data:/usr/share/elasticsearch/data
+#     ports:
+#       - 9200:9200
+# volumes:
+#   elasticsearch_data:
+#   db:
+#     image: postgres
+   
+#     environment:
+#       POSTGRES_DB: psy_db
+#       POSTGRES_USER: postgres
+#       POSTGRES_PASSWORD: postgres
+#     volumes:
+#       - postgres_data:/var/lib/postgresql/data
+#     ports:
+#       - 5432:5432
+
+
+version: '3'
+services:
+  elastic:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.17.10
+    environment:
+      - discovery.type=single-node
+    volumes:
+      - /home/apprenant/Documents/data:/usr/share/elasticsearch/data
+    ports:
+      - 9200:9200
+
+  db:
+    image: postgres
+    environment:
+      - POSTGRES_DB=psy_db
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+
+volumes:
+  elasticsearch_data:
+  postgres_data:
